@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/styles.css">
+  <title>Boggle!</title>
+</head>
+<body>
+  <section id="boggle-game">
+    <p>High Score: 
+      <b>{{ session.get("high_score",0) }}</b> 
+      in {{ session.get("number_plays", 0) }} plays
+    </p>
+
+    <p>
+      Score: <b id="score">0</b>
+      Seconds Left: <b id="timer"></b>
+    </p>
+    <table class="game-board">
+      {% for row in board %}
+        <tr class="row">
+          {% for table_cell in row %}
+            <td class="table-cell">{{ table_cell }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+    <!-- check word form -->
+    <form class="word-form" id="word-form" method="POST">
+      <label for="word">Word:</label>
+      <input type="text" name="word" class="word" autofocus id="word">
+      <button type="submit">Enter</button>
+    </form>
+    <!-- messages -->
+    <p class="msg hidden"></p>
+    <!-- list of words -->
+    <ul class="words"></ul>
+  </section>
+  <script src="http://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+  <script type="text/javascript" src="static/boggle.js"></script>
+</body>
+</html>
